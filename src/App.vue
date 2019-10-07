@@ -1,17 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="addOne"> Add 1 </button>
+    <p>
+      The button above has been clicked {{ counter }} times
+    </p>
+
+    <Sample />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Sample from './components/HoC'
+import SampleHoc from './components/HoC/HoC'
 
 export default {
   name: 'app',
+
   components: {
-    HelloWorld
+    Sample: SampleHoc(Sample),
+  },
+
+  data() {
+    return {
+      counter: 0
+    }
+  },
+
+  methods: {
+    addOne () {
+      this.counter += 1
+    }
   }
 }
 </script>
